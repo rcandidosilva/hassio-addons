@@ -19,6 +19,8 @@ ARG ARCH=amd64
 COPY install.sh healthcheck.sh /
 
 # install omada controller (instructions taken from install.sh); then create a user & group and set the appropriate file system permissions
+RUN chmod +x /install.sh
+RUN chmod +x /healthcheck.sh
 RUN /install.sh && rm /install.sh
 
 WORKDIR /opt/tplink/EAPController/lib
