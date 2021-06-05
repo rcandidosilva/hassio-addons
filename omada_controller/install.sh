@@ -21,7 +21,7 @@ PKGS=(
 
 case "${ARCH}" in
 amd64|arm64|"")
-  PKGS+=( mongodb )
+  PKGS+=( mongodb-org )
   ;;
 armv7l)
   PKGS+=( mongodb )
@@ -38,6 +38,13 @@ echo "OMADA_URL=${OMADA_URL}"
 
 echo "**** Install Dependencies ****"
 export DEBIAN_FRONTEND=noninteractive
+
+sudo apt remove --autoremove mongodb-org
+sudo rm /etc/apt/sources.list.d/mongodb*.list
+sudo apt update
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B
+echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+
 apt-get update
 apt-get install --no-install-recommends -y "${PKGS[@]}"
 
