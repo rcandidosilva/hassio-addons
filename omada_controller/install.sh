@@ -43,6 +43,7 @@ apt-get remove --autoremove mongodb-org
 rm /etc/apt/sources.list.d/mongodb*.list
 apt-get update
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 4B7C549A058F8B6B
+echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.2.list
 
 apt-get update
 apt-get install --no-install-recommends -y "${PKGS[@]}"
