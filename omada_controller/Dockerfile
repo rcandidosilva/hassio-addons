@@ -12,10 +12,6 @@ COPY install.sh healthcheck.sh entrypoint.sh /
 
 RUN chmod +x /*.sh
 
-RUN mkdir -p /data/omada_controller/logs /data/omada_controller/work \
-  && cp -R /opt/tplink/EAPController/data /data/omada_controller \
-	&& chown -R 508:508 /data/omada_controller/logs /data/omada_controller/work /data/omada_controller/data
-
 # Copy configuration properties
 COPY omada.properties log4j2.properties /opt/tplink/EAPController/properties/
 

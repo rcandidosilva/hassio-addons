@@ -67,6 +67,15 @@ then
   set_port_property portal.https.port 8843 "${PORTAL_HTTPS_PORT}"
 fi
 
+# check to see if there is a db directory; create it if it is missing
+if [ ! -d "/data/omada_controller" ]
+then
+  echo "INFO: Omanda Controller directory missing; creating '/data/omada_controller'"
+  mkdir /data/omada_controller
+  chown 508:508 /data/omada_controller
+  echo "done"
+fi
+
 # make sure permissions are set appropriately on each directory
 for DIR in work logs
 do
@@ -82,11 +91,13 @@ do
   fi
 done
 
-# check to see if there is a db directory; create it if it is missing
-if [ ! -d "/data/omada_controller/data/db" ]
+# check to see if there is a data & db directory; create it if it is missing
+if [ ! -d "/data/omada_controller/data" ]
 then
-  echo "INFO: Database directory missing; creating '/opt/tplink/EAPController/data/db'"
+  echo "INFO: Database directory missing; creating '/data/omada_controller/data'"
+  mkdir /data/omada_controller/data
   mkdir /data/omada_controller/data/db
+  chown 508:508 /data/omada_controller/data
   chown 508:508 /data/omada_controller/data/db
   echo "done"
 fi
