@@ -7,9 +7,9 @@
 FROM arm32v7/openjdk:8u181-jre-slim
 HEALTHCHECK CMD wget --quiet --tries=1 --no-check-certificate http://127.0.0.1:8088 || exit 1
 
-ARG OMADA_VER=3.0.5
+ARG OMADA_VER=3.2.14
 ARG OMADA_FILENAME="Omada_Controller_v${OMADA_VER}_linux_x64"
-ARG OMADA_URL="https://static.tp-link.com/2018/201811/20181108/${OMADA_FILENAME}.tar.gz.zip"
+ARG OMADA_URL="https://static.tp-link.com/2020/202012/20201225/${OMADA_FILENAME}.tar.gz"
 ARG MONGO_ARM_FILENAME=core_mongodb_3_0_14
 
 WORKDIR /tmp
@@ -22,8 +22,7 @@ RUN apt-get update && \
 RUN wget -q http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb && \
   dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb
 
-RUN wget -q $OMADA_URL && \
-  unzip $OMADA_FILENAME.tar.gz.zip
+RUN wget -q $OMADA_URL
 
 RUN tar -xvf $OMADA_FILENAME.tar.gz
 
