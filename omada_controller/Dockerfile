@@ -17,8 +17,8 @@ RUN apt-get update && \
     wget && \
   rm -rf /var/lib/apt/lists/*
 
-RUN wget -q http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u11_armhf.deb && \
-  dpkg -i libssl1.0.0_1.0.1t-1+deb8u11_armhf.deb
+RUN wget -q http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb && \
+  dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb
 
 RUN wget -q https://static.tp-link.com/2018/201811/20181108/$OMADA_FILENAME.tar.gz.zip && \
   unzip $OMADA_FILENAME.tar.gz.zip
