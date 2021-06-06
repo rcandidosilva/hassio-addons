@@ -68,7 +68,7 @@ then
 fi
 
 # make sure permissions are set appropriately on each directory
-for DIR in data work logs
+for DIR in work logs
 do
   OWNER="$(stat -c '%u' /opt/tplink/EAPController/${DIR})"
   GROUP="$(stat -c '%g' /opt/tplink/EAPController/${DIR})"
@@ -83,11 +83,11 @@ do
 done
 
 # check to see if there is a db directory; create it if it is missing
-if [ ! -d "/opt/tplink/EAPController/data/db" ]
+if [ ! -d "/data/omada_controller/data/db" ]
 then
   echo "INFO: Database directory missing; creating '/opt/tplink/EAPController/data/db'"
-  mkdir /opt/tplink/EAPController/data/db
-  chown 508:508 /opt/tplink/EAPController/data/db
+  mkdir /data/omada_controller/data/db
+  chown 508:508 /data/omada_controller/data/db
   echo "done"
 fi
 
@@ -115,9 +115,9 @@ then
 fi
 
 # see if any of these files exist; if so, do not start as they are from older versions
-if [ -f /opt/tplink/EAPController/data/db/tpeap.0 ] || [ -f /opt/tplink/EAPController/data/db/tpeap.1 ] || [ -f /opt/tplink/EAPController/data/db/tpeap.ns ]
+if [ -f /data/omada_controller/data/db/tpeap.0 ] || [ -f /data/omada_controller/data/db/tpeap.1 ] || [ -f /data/omada_controller/data/db/tpeap.ns ]
 then
-  echo "ERROR: the data volume mounted to /opt/tplink/EAPController/data appears to have data from a previous version!"
+  echo "ERROR: the data volume mounted to /data/omada_controller/data appears to have data from a previous version!"
   echo "  Follow the upgrade instructions at https://github.com/mbentley/docker-omada-controller#upgrading-to-41"
   exit 1
 fi
