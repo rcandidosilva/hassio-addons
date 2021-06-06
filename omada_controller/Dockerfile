@@ -13,9 +13,8 @@ RUN mkdir -p /data/omada_controller/logs /data/omada_controller/work \
   && cp -R /opt/tplink/EAPController/data /data/omada_controller \
 	&& chown -R omada:omada /data/omada_controller
 
-RUN cp -R /omada.properties /opt/tplink/EAPController/properties \
-  && cp -R /log4j2.properties /opt/tplink/EAPController/properties
-
+# Copy configuration properties
+COPY omada.properties log4j2.properties /opt/tplink/EAPController/properties
 
 EXPOSE 8043/tcp 8088/tcp 27001/udp 27002/tcp 29810/udp 29811/tcp 29812/tcp 29813/tcp
 
