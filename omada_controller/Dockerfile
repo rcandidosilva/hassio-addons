@@ -7,9 +7,9 @@
 FROM arm32v7/openjdk:8u181-jre-slim
 HEALTHCHECK CMD wget --quiet --tries=1 --no-check-certificate http://127.0.0.1:8088 || exit 1
 
-ARG OMADA_VER=4.3.5
-ARG OMADA_FILENAME="Omada_SDN_Controller_v${OMADA_VER}_linux_x64"
-ARG OMADA_URL="https://static.tp-link.com/2021/202105/20210507/${OMADA_FILENAME}.tar.gz"
+ARG OMADA_VER=3.0.5
+ARG OMADA_FILENAME="Omada_Controller_v${OMADA_VER}_linux_x64"
+ARG OMADA_URL="https://static.tp-link.com/2018/201811/20181108/${OMADA_FILENAME}.tar.gz.zip"
 ARG MONGO_ARM_FILENAME=core_mongodb_3_0_14
 
 WORKDIR /tmp
@@ -22,7 +22,8 @@ RUN apt-get update && \
 RUN wget -q http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb && \
   dpkg -i libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb
 
-RUN wget -q $OMADA_URL
+RUN wget -q $OMADA_URL && \
+  unzip $OMADA_FILENAME.tar.gz.zip
 
 RUN tar -xvf $OMADA_FILENAME.tar.gz
 
@@ -42,4 +43,4 @@ RUN mkdir -p $INSTALL_DIR && \
 EXPOSE 8043/tcp 8088/tcp 27001/udp 27002/tcp 29810/udp 29811/tcp 29812/tcp 29813/tcp
 
 WORKDIR $INSTALL_DIR
-CMD java -server -Xms128m -Xmx1024m -XX:MaxHeapFreeRatio=60 -XX:MinHeapFreeRatio=30 -XX:+HeapDumpOnOutOfMemoryError -cp /usr/share/java/commons-daemon.jar:/opt/tplink/EAPController/lib/* com.tplink.omada.start.OmadaLinuxMain
+CMD java -server -Xms128m -Xmx1024m -XX:MaxHeapFreeRatio=60 -XX:MinHeapFreeRatio=30 -XX:+HeapDumpOnOutOfMemoryError -cp /usr/share/java/commons-daemon.jar:/opt/tplink/EAPController/lib/* -Deap.home=/opt/tplink/EAPController com.tp_link.eap.start.EapLinuxMain
