@@ -14,6 +14,7 @@ ARG ARCH=armv7l
 COPY install.sh healthcheck.sh entrypoint.sh /
 
 # install omada controller (instructions taken from install.sh); then create a user & group and set the appropriate file system permissions
+RUN chmod +x /*.sh
 RUN /install.sh && rm /install.sh
 
 WORKDIR /data/omada_controller/lib
