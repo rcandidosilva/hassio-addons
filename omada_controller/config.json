@@ -4,7 +4,7 @@
   "slug": "omada_controller",
   "description": "Manage your TP-Link Omada Controller network using a web browser",
   "url": "https://github.com/rcandidosilva/hassio-addons",
-  "webui": "https://[HOST]:[PORT:8088]",
+  "webui": "http://[HOST]:[PORT:8088]",
   "startup": "services",
   "arch": ["aarch64", "amd64", "armv7", "i386"],
   "init": false,
