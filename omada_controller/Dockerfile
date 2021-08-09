@@ -4,7 +4,7 @@
 #                       PLEASE DO NOT EDIT IT DIRECTLY.
 # ------------------------------------------------------------------------------
 
-ARG BASE=mbentley/omada-controller:4.3-armv7l
+ARG BASE=mbentley/omada-controller:4.4-armv7l
 FROM ${BASE}
 HEALTHCHECK CMD wget --quiet --tries=1 --no-check-certificate http://127.0.0.1:8088 || exit 1
 
