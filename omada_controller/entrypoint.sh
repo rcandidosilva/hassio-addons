@@ -134,7 +134,7 @@ then
   exit 1
 fi
 
-echo "INFO: Starting Omada Controller as user omada"
+echo "INFO: Checking if user omada exists"
 
 if [ id "omada" >/dev/null 2>&1; ] 
 then
@@ -143,8 +143,11 @@ else
   echo "**** Setup omada User Account ****"
   groupadd -g 508 omada
   useradd -u 508 -g 508 -m -d "${OMADA_DIR}" omada  
+  mkdir "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
   chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
 fi
+
+echo "INFO: Starting Omada Controller as user omada"
 
 # tail the omada logs if set to true
 if [ "${SHOW_SERVER_LOGS}" = "true" ]
