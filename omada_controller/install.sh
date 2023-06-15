@@ -150,7 +150,7 @@ do
 done
 
 # copy omada default properties for can be used when properties is mounted as volume
-cp -r properties/ "${OMADA_DIR}/properties.defaults"
+cp -r /opt/tplink/EAPController/properties/ "${OMADA_DIR}/properties.defaults"
 
 # symlink for mongod
 ln -sf "$(command -v mongod)" "${OMADA_DIR}/bin/mongod"
