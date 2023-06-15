@@ -14,7 +14,6 @@ SHOW_SERVER_LOGS="${SHOW_SERVER_LOGS:-true}"
 SHOW_MONGODB_LOGS="${SHOW_MONGODB_LOGS:-false}"
 SSL_CERT_NAME="${SSL_CERT_NAME:-tls.crt}"
 SSL_KEY_NAME="${SSL_KEY_NAME:-tls.key}"
-OMADA_DIR="/data/omada_controller"
 
 # set default time zone and notify user of time zone
 echo "INFO: Time zone set to '${TZ}'"
@@ -134,31 +133,18 @@ then
   exit 1
 fi
 
-echo "INFO: Checking if user omada exists"
-
-if [ id "omada" >/dev/null 2>&1; ] 
-then
-  echo "INFO: Omada user exists"
-else
-  echo "**** Setup omada User Account ****"
-  groupadd -g 508 omada
-  useradd -u 508 -g 508 -m -d "${OMADA_DIR}" omada  
-  mkdir "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
-  chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
-fi
-
 echo "INFO: Starting Omada Controller as user omada"
 
 # tail the omada logs if set to true
 if [ "${SHOW_SERVER_LOGS}" = "true" ]
 then
-  gosu omada tail -F -n 0 ${OMADA_DIR}/logs/server.log &
+  gosu omada tail -F -n 0 /opt/tplink/EAPController/logs/server.log &
 fi
 
 # tail the mongodb logs if set to true
 if [ "${SHOW_MONGODB_LOGS}" = "true" ]
 then
-  gosu omada tail -F -n 0 ${OMADA_DIR}/logs/mongod.log &
+  gosu omada tail -F -n 0 /opt/tplink/EAPController/logs/mongod.log &
 fi
 
 # run the actual command as the omada user
