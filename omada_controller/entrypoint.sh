@@ -136,7 +136,8 @@ fi
 
 echo "INFO: Checking if the user omada exists"
 
-if [id "omada" >/dev/null 2>&1;] then
+if [id "omada" >/dev/null 2>&1;] 
+then
   echo "INFO: User omada already exists"
 else
   echo "INFO: Setup omada User Account ****"
