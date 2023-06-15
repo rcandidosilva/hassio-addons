@@ -1,6 +1,6 @@
 {
   "name": "Omada Controller",
-  "version": "5.9",
+  "version": "5.9-mbentley",
   "slug": "omada_controller",
   "description": "Manage your TP-Link Omada Controller network using a web browser",
   "url": "https://github.com/rcandidosilva/hassio-addons",
