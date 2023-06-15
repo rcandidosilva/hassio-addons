@@ -36,7 +36,7 @@ patch_log4j() {
 
   # get the new log4j version from the github tags
   NEW_LOG4J_VERSION="$(wget -q -O - "https://api.github.com/repos/apache/logging-log4j2/tags?per_page=50" | jq -r '.[] | select(.name | startswith("rel/2.")) | .name' | sort --version-sort -r | head -n 1 | awk -F '/' '{print $2}')"
-  OMADA_LIB_PATH="/data/omada_controller/lib"
+  OMADA_LIB_PATH="/opt/tplink/EAPController/lib"
 
   # determine existing filenames of binaries to replace
   LOG4J_API="$(ls "${OMADA_LIB_PATH}"/log4j-api-*)"

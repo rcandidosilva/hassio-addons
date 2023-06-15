@@ -5,7 +5,7 @@ set -e
 # omada controller dependency and package installer script for versions 4.x and 5.x
 
 # set default variables
-OMADA_DIR="/data/omada_controller"
+OMADA_DIR="/opt/tplink/EAPController"
 ARCH="${ARCH:-}"
 INSTALL_VER="${INSTALL_VER:-}"
 
@@ -150,8 +150,7 @@ do
 done
 
 # copy omada default properties for can be used when properties is mounted as volume
-#mkdir "${OMADA_DIR}/properties.defaults"
-#cp -r properties/ "${OMADA_DIR}/properties.defaults"
+cp -r properties/ "${OMADA_DIR}/properties.defaults"
 
 # symlink for mongod
 ln -sf "$(command -v mongod)" "${OMADA_DIR}/bin/mongod"
@@ -170,10 +169,10 @@ case "${OMADA_MAJOR_VER}" in
 esac
 
 # for v5.1 & above, create backup of data/html directory in case it is missing (to be extracted at runtime)
-if [ -d /data/omada_controller/data/html ]
+if [ -d /opt/tplink/EAPController/data/html ]
 then
   # create backup
-  cd /data/omada_controller/data
+  cd /opt/tplink/EAPController/data
   tar zcvf ../data-html.tar.gz html
 fi
 
