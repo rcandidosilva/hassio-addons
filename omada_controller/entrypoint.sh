@@ -14,6 +14,7 @@ SHOW_SERVER_LOGS="${SHOW_SERVER_LOGS:-true}"
 SHOW_MONGODB_LOGS="${SHOW_MONGODB_LOGS:-false}"
 SSL_CERT_NAME="${SSL_CERT_NAME:-tls.crt}"
 SSL_KEY_NAME="${SSL_KEY_NAME:-tls.key}"
+OMADA_DIR="/data/omada_controller"
 
 # set default time zone and notify user of time zone
 echo "INFO: Time zone set to '${TZ}'"
@@ -141,7 +142,7 @@ then
 else
   echo "**** Setup omada User Account ****"
   groupadd -g 508 omada
-  useradd -u 508 -g 508 -d "${OMADA_DIR}" omada  
+  useradd -u 508 -g 508 -m -d "${OMADA_DIR}" omada  
   chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
 fi
 

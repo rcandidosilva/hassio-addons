@@ -63,7 +63,7 @@ chmod 755 "${OMADA_DIR}"/bin/*
 
 echo "**** Setup omada User Account ****"
 groupadd -g 508 omada
-useradd -u 508 -g 508 -d "${OMADA_DIR}" omada
+useradd -u 508 -g 508 -m -d "${OMADA_DIR}" omada
 mkdir "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
 chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
 
