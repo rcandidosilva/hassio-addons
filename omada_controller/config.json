@@ -1,6 +1,6 @@
 {
   "name": "Omada Controller",
-  "version": "dev",
+  "version": "5.9",
   "slug": "omada_controller",
   "description": "Manage your TP-Link Omada Controller network using a web browser",
   "url": "https://github.com/rcandidosilva/hassio-addons",
@@ -18,7 +18,8 @@
     "29810/udp": 29810,
     "29811/tcp": 29811,
     "29812/tcp": 29812,
-    "29813/tcp": 29813
+    "29813/tcp": 29813,
+    "29814/tcp": 29814
   },
   "ports_description": {
     "8088/tcp": "Used for controller web interface and API",
@@ -29,7 +30,8 @@
     "29810/udp": "Used for device discovery",
     "29811/tcp": "Used for device discovery",
     "29812/tcp": "Used for device discovery",
-    "29813/tcp": "Used for device discovery"
+    "29813/tcp": "Used for device discovery",
+    "29814/tcp": "Used for device discovery"
   },
   "hassio_api": true,
   "options": {
