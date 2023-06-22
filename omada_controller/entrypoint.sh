@@ -68,6 +68,17 @@ then
   set_port_property portal.https.port 8843 "${PORTAL_HTTPS_PORT}"
 fi
 
+echo "INFO: Checking if the user omada exists"
+if id "omada" >/dev/null 2>&1;
+then
+  echo "INFO: User omada already exists"
+else
+  echo "INFO: Setup omada User Account"
+  groupadd -g 508 omada
+  useradd -u 508 -g 508 -d "${OMADA_DIR}" omada
+  echo "done"
+fi
+
 # check to see if there is a db directory; create it if it is missing
 if [ ! -d "/data/omada_controller" ]
 then
@@ -103,6 +114,17 @@ then
   echo "done"
 fi
 
+# check to see if there are the logs and work directory; create it if it is missing
+if [ ! -d "${OMADA_DIR}/logs" ]
+then
+  mkdir "${OMADA_DIR}/logs" 
+fi
+if [ ! -d "${OMADA_DIR}/work" ]
+then
+  mkdir "${OMADA_DIR}/work"
+fi
+chown -R omada:omada "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
+
 # Import a cert from a possibly mounted secret or file at /cert
 if [ -f "/cert/${SSL_KEY_NAME}" ] && [ -f "/cert/${SSL_CERT_NAME}" ]
 then
@@ -132,27 +154,6 @@ then
   echo "ERROR: the data volume mounted to /data/omada_controller/data appears to have data from a previous version!"
   echo "  Follow the upgrade instructions at https://github.com/mbentley/docker-omada-controller#upgrading-to-41"
   exit 1
-fi
-
-echo "INFO: Checking if the user omada exists"
-
-if id "omada" >/dev/null 2>&1;
-then
-  echo "INFO: User omada already exists"
-else
-  echo "INFO: Setup omada User Account"
-  groupadd -g 508 omada
-  useradd -u 508 -g 508 -d "${OMADA_DIR}" omada
-  if [ ! -d "${OMADA_DIR}/logs" ]
-  then
-    mkdir "${OMADA_DIR}/logs" 
-  fi
-  if [ ! -d "${OMADA_DIR}/work" ]
-  then
-    mkdir "${OMADA_DIR}/work"
-  fi
-  chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
-  echo "done"
 fi
 
 echo "INFO: Starting Omada Controller as user omada"
