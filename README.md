@@ -1,39 +1,27 @@
-# Home Assistant TP-Link Omada Integration
+# Home Assistant Add-on: Omada Controller Software
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![Install on my Home Assistant][install-badge]][install-url]
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+![Supports armhf Architecture][armhf-shield]
+![Supports armv7 Architecture][armv7-shield]
+![Supports i386 Architecture][i386-shield]
 
-Adds Omada SDN Controller support to Home assistant. This integration requires [HACS](https://hacs.xyz).
+TP-Link Omada Controller software allows centralised control of TP-Link Wireless Access Points and other devices. This Home Assistant add-on allows you to run Omada Controller within HASSIO supervisor. For more information about the Omada Controller Software see the [TP-Link website](https://www.tp-link.com/uk/business-networking/management-platform/omada-software-controller/).
 
-## Features
-
-- Device tracker for clients.
-- Client and device bandwidth sensors.
-- Client and device statistics sensors.
-- WLAN Radio controls
-- WLAN SSID controls
-- Client blocking toggles.
-- SSID filter.
-
-## Planned Features
-
-- Better wired client support (help wanted.)
-- Better switch and router support (help wanted.)
-- Individual client filters.
-- SDN and site controls and statistics.
-
-
+---
 
 ## Installation
 
-Recommended to be installed via [HACS](https://github.com/hacs/integration)
+1. Navigate in your Home Assistant frontend to **Configuration** -> **Add-ons, Backups & Supervisor** -> **Add-ons** -> **Add-on Store**  and add this URL as an additional repository: `https://github.com/rcandidosilva/hassio-addons`
+2. Find the "Omada Controller" add-on (normally at the bottom of the page) and click the "INSTALL" button.
+3. If the add-on has started OK click on "OPEN WEB UI" to get started with Omada Controller. If you Home Assistant is using an external domain name (eg. via DuckDNS) you may need to map port 8043 on your router to your Home Assistant device. Try visiting https://homeassistant.local:8043/ in a browser instead.
+4. (OPTIONAL) Install the Home Assistant [TP-Link Omada Integration](https://github.com/zachcheatham/ha-omada) by zachcheatham.
 
-1. Go to HACS -> Integrations
-2. [Add this repo to your HACS custom repositories](https://hacs.xyz/docs/faq/custom_repositories)
-3. Search for TP-Link Omada and install.
-4. Restart Home Assistant
-5. Open Home Assistant Settings -> Devices & Serivces
-6. Shift+reload your browser to clear config flow caches.
-7. Click ADD INTEGRATION
-8. Search for TP-Link Omada
-9. Enter the URL you use to access your Omada SDN, the username you would like HA to connect with, and its password.
-10. If no errors occur, you're all set! Otherwise, feel free to browse the issue track or open a new issue to help resolve the issue.
+[install-url]: https://my.home-assistant.io/redirect/supervisor_addon?addon=d1f42497_omada_controller
+[install-badge]: https://img.shields.io/badge/Install%20on%20my-Home%20Assistant-41BDF5?logo=home-assistant
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[i386-shield]: https://img.shields.io/badge/i386-no-red.svg
