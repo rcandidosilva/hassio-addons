@@ -76,6 +76,7 @@ else
   echo "INFO: Setup omada User Account"
   groupadd -g 508 omada
   useradd -u 508 -g 508 -d "${OMADA_DIR}" omada
+  chown -R 508:508 /opt/tplink/EAPController
   echo "done"
 fi
 
@@ -102,6 +103,17 @@ do
     chown -R 508:508 "/opt/tplink/EAPController/${DIR}"
   fi
 done
+
+# check to see if there is a data & db directory; create it if it is missing
+if [ ! -d "/opt/tplink/EAPController/data" ]
+then
+  echo "INFO: Database directory missing; creating '/opt/tplink/EAPController/data'"
+  mkdir /opt/tplink/EAPController/data
+  mkdir /opt/tplink/EAPController/data/db
+  echo "done"
+fi
+chown -R 508:508 /opt/tplink/EAPController/data
+chown -R 508:508 /opt/tplink/EAPController/data/db
 
 # check to see if there is a data & db directory; create it if it is missing
 if [ ! -d "/data/omada_controller/data" ]
