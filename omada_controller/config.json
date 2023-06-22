@@ -35,13 +35,17 @@
   "options": {
     "ssl": true,
     "certfile": "fullchain.pem",
-    "keyfile": "privkey.pem"
+    "keyfile": "privkey.pem",
+    "mongo_logs": false,
+    "omada_logs": true
   },
   "schema": {
     "log_level": "list(trace|debug|info|notice|warning|error|fatal)?",
     "ssl": "bool",
     "certfile": "str",
     "keyfile": "str",
+    "mongo_logs": "bool",
+    "omada_logs": "bool",
     "memory_max": "int?",
     "memory_init": "int?"
   }
