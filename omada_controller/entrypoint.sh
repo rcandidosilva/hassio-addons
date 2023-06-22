@@ -142,11 +142,11 @@ then
 else
   echo "INFO: Setup omada User Account"
   groupadd -g 508 omada
-  useradd -u 508 -g 508 -d "${OMADA_DIR}" omada  
-  if [ ! -d "${OMADA_DIR/logs" ]
-    mkdir "${OMADA_DIR}/logs"
+  useradd -u 508 -g 508 -d "${OMADA_DIR}" omada
+  if [ ! -d "${OMADA_DIR}/logs" ]
+    mkdir "${OMADA_DIR}/logs" 
   fi
-  if [ ! -d "${OMADA_DIR/work" ]
+  if [ ! -d "${OMADA_DIR}/work" ]
     mkdir "${OMADA_DIR}/work"
   fi
   chown -R omada:omada "${OMADA_DIR}/data" "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
