@@ -140,7 +140,7 @@ if id "omada" >/dev/null 2>&1;
 then
   echo "INFO: User omada already exists"
 else
-  echo "INFO: Setup omada User Account
+  echo "INFO: Setup omada User Account"
   groupadd -g 508 omada
   useradd -u 508 -g 508 -d "${OMADA_DIR}" omada  
   mkdir "${OMADA_DIR}/logs" "${OMADA_DIR}/work"
